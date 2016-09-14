@@ -10,6 +10,7 @@ public class RectangleCalculation {
     private double diagonalVector = 0.0;
     private double angleDiagonalVector = 0.0;
     private double distanceBetweenTwoPoints = 0.0;
+    double distanceResult = 0.0;
     private double distanceCPtoCB = 0.0;
     private double distanceCPtoBD = 0.0;
     private double distanceCPtoDA = 0.0;
@@ -300,6 +301,13 @@ public class RectangleCalculation {
         return angleOfVector;
     }
 
+    /** Factor for calculations of 10th micro-degree to degree
+     */
+    private static final double TEN_MILLION = 10000000.0;
+
+    /** The radius of the earth in meters.
+     */
+    private static final double EARTH_RAD = 6371000.8;
 
 
     //ToDoooooooo	Distanz zwischen zwei berechneten Punkten
@@ -307,14 +315,28 @@ public class RectangleCalculation {
     //				Rest ist noch zu implementieren!!!!!
     public double getDistanceBetweenTwoPoints (Rectangle object){
 
-        double radLat1 = object.getCenterPointX();
-        double radLon1 = object.getCenterPointY();
-        double radLat2 = object.getCornerPointCx();
-        double radLon2 = object.getCenterPointY();
+        double radLat1 = Math.toRadians(object.getCenterPointX() / TEN_MILLION);
+        double radLon1 = Math.toRadians(object.getCenterPointY() / TEN_MILLION);
+        double radLat2 = Math.toRadians(object.getCornerPointCx() / TEN_MILLION);
+        double radLon2 = Math.toRadians(object.getCenterPointY() / TEN_MILLION) ;
 
         return distanceBetweenTwoPoints = (Math.acos( Math.cos(radLat1) * Math.cos(radLon1) * Math.cos(radLat2) * Math.cos(radLon2)
                 + Math.cos(radLat1) * Math.sin(radLon1) * Math.cos(radLat2) * Math.sin(radLon2)
-                + Math.sin(radLat1) * Math.sin(radLat2) ));
+                + Math.sin(radLat1) * Math.sin(radLat2) )) * EARTH_RAD;
+    }
+
+    //ToDoooooooo	Distanz zwischen zwei berechneten Punkten
+    //           	(in diesem Fall Punkt A nach Punkt B)
+    //				Rest ist noch zu implementieren!!!!!
+    public double getDistanceBetweenPointAandPointB (Rectangle object){
+
+        double radLat1 = Math.toRadians((object.getCornerPointAx() - object.getCenterPointX()) / TEN_MILLION);
+        double radLon1 = Math.toRadians((object.getCornerPointAy() - object.getCenterPointY()) / TEN_MILLION);
+        double radLat2 = Math.toRadians((object.getCornerPointBx() - object.getCenterPointX()) / TEN_MILLION);
+        double radLon2 = Math.toRadians((object.getCornerPointBy() - object.getCenterPointY()) / TEN_MILLION) ;
+        return distanceResult = (Math.acos( Math.cos(radLat1) * Math.cos(radLon1) * Math.cos(radLat2) * Math.cos(radLon2)
+                                + Math.cos(radLat1) * Math.sin(radLon1) * Math.cos(radLat2) * Math.sin(radLon2)
+                                + Math.sin(radLat1) * Math.sin(radLat2) )) * EARTH_RAD;
     }
 
 
@@ -328,13 +350,14 @@ public class RectangleCalculation {
                 " Distance  CenterPoint -> Point BD\t==> " + distanceCPtoBD + "\n" +
                 " Distance  CenterPoint -> Point DA\t==> " + distanceCPtoDA + "\n" +
                 " Distance  CenterPoint -> Point AC\t==> " + distanceCPtoAC + "\n" +
-                "------------------------------------------------------------------------------" + "\n";
+                "------------------------------------------------------------------------------" + "\n" +
         //" Centerpoint " + rectangleCenterPoint() +
         //" , Point A " + rectangleCornerPointA() +
         //" , Point B " + rectangleCornerPointB() +
         //" , Point C " + rectangleCornerPointC() +
         //" , Point D " + rectangleCornerPointD(); // +
-        //" Distance between CP -> VectorMiddlePoint of [CB] =====> " + distanceBetweenTwoPoints + "\n";
+        " Distance between CP -> VectorMiddlePoint of [CB] =====> " + distanceBetweenTwoPoints + "\n" +
+        " Distance between Point A ------> Point B =============> " + distanceResult;
     }
 }
 

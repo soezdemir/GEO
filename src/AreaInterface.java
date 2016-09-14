@@ -12,10 +12,10 @@
 
 public interface AreaInterface{
 
-    boolean isInRectangleArea(Point point); /**Mittelpunkt der Flaeche*/
+    boolean isInArea(WGS84Point point); /**Mittelpunkt der Flaeche*/
 
-    boolean isInRectangleArea(double length, double heigth);/**Punkt in einer bestimmten Flaeche*/
+    boolean isInArea(long latitude, long longitude);/**Punkt in einer bestimmten Flaeche*/
 
-    boolean intersectsRectangle(AreaInterface area);/**Uberschneidung von Flaechen*/
+    boolean intersectsArea(AreaInterface area);/**Uberschneidung von Flaechen*/
 
 }

@@ -29,8 +29,8 @@ public class Rectangle{
         this.b = b;
         counter++;
 
-        length = (b.x - a.x);
-        heigth = (b.y - a.y);
+        length = (b.x - a.x) ;
+        heigth = (b.y - a.y) ;
     }
 
 

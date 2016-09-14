@@ -1,13 +1,12 @@
 /**
  * @author soezdemir
  * @version 0.01
- *
  * */
 
-import java.io.*;
+
 import java.util.*;
 import java.lang.*;
-import java.lang.Math;
+
 
 class RectangleMain{
     private static ArrayList<Point> zPoints = new ArrayList<Point>();
@@ -22,7 +21,7 @@ class RectangleMain{
 
         double x, y;
 
-        Point a = new Point(4.0, 2.0);
+        Point a = new Point(4.0, 8.0);
         Point b = new Point(8.0, 6.0);
 
         System.out.print("\n------------------------------------------------------------------------------"
@@ -74,11 +73,13 @@ class RectangleMain{
             //Point cornerPointC  = new Point (cloneRec.getCornerPointCx(), cloneRec.getCornerPointCy());
             //Point cornerPointD  = new Point (cloneRec.getCornerPointDx(), cloneRec.getCornerPointDy());
 
-            /** System.out.println ("\n TESTOUTPUT - Distance between CP and PointCB =====> "
+            /**System.out.println ("\n TESTOUTPUT - Distance between CP and PointCB =====> "
              + object.getDistanceBetweenTwoPoints());
+             System.out.println ("\n TESTOUTPUT - Distance between CP and PointCB =====> "
+             + object.getDistanceBetweenPointAandPointB());
              System.out.println("\n TESTOUTPUT - Center Point of Area ("
-             + object.getCenterPointX() + "/" + object.getCenterPointY() + ")\n");
-             */
+             + object.getCenterPointX() + "/" + object.getCenterPointY() + ")\n");*/
+
 
             pointInArea(calculator, object);
             pointInArea(calculator, cloneRec);
